@@ -27,4 +27,37 @@ public class UsersListServiceImpl implements UsersListService {
 		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
 		return ul;
 	}
+
+	@Override
+	public boolean isAccountEmpty(String accountId) {
+		// TODO 自動生成されたメソッド・スタブ
+		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
+
+		boolean isEmpty = uld.isAccountEmpty(accountId);
+
+		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
+		return isEmpty;
+	}
+
+	@Override
+	public int insert(UsersList ul) {
+		// TODO 自動生成されたメソッド・スタブ
+		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
+
+		int updateCount = uld.insert(ul);
+
+		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
+		return updateCount;
+	}
+
+	@Override
+	public int update(UsersList ul) {
+		// TODO 自動生成されたメソッド・スタブ
+		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
+
+		int updateCount = uld.update(ul);
+
+		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
+		return updateCount;
+	}
 }

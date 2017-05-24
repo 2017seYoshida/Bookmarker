@@ -12,6 +12,7 @@ public enum LogEnum {
 	IF("IF ------>"),
 	TRUE("TRUE"),
 	FALSE("FALSE"),
+	UPDATE_COUNT("SQL UPDATE COUNT : "),
 	;
 	private final String logValue;
 

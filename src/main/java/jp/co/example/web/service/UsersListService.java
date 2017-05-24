@@ -4,5 +4,8 @@ import jp.co.example.web.entity.UsersList;
 
 public interface UsersListService {
 
-	public UsersList login(String accountId, String userPassword);
+	UsersList login(String accountId, String userPassword);
+	boolean isAccountEmpty(String accountId);
+	int insert(UsersList ul);
+	int update(UsersList ul);
 }
