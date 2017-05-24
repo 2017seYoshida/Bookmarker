@@ -6,6 +6,7 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class UsersList {
 	private Integer userId;
 	private String accountId;

@@ -6,6 +6,7 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Bookmarks {
 	private Integer bookmarkId;
 	private String bookmarkName;

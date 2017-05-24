@@ -5,11 +5,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
-import enums.JspPageEnum;
-import enums.LogEnum;
+import enums.*;
+import jp.co.example.web.entity.UsersList;
 import jp.co.example.web.service.UsersListService;
 import lombok.extern.slf4j.Slf4j;
 import util.Util;
@@ -32,18 +31,49 @@ public class AuthController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String LoginPostController(HttpSession session, Model model) {
+	public String LoginPostController(@RequestParam String id,
+										@RequestParam String pass,
+											HttpSession session, Model model) {
 		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
 
+		log.info(LogEnum.IF.getLogValue() + "(\"\".equals(id) || \"\".equals(pass))");
+		if("".equals(id) || "".equals(pass)) {
+			log.info(LogEnum.TRUE.getLogValue());
+			model.addAttribute(KeyIdEnum.RESULT.getKey(), "未入力項目があります");
 
-		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
-		return JspPageEnum.MAIN_BOOKMARK_JSP.getPageName();
+			log.info(Util.getMethodName() + LogEnum.END.getLogValue());
+			return JspPageEnum.LOGIN_JSP.getPageName();
+		} else  {
+			log.info(LogEnum.FALSE.getLogValue());
+		}
+
+		UsersList ul = uls.login(id, pass);
+
+		log.info(LogEnum.IF.getLogValue() + "(ul != null)");
+		if (ul != null) {
+			log.info(LogEnum.TRUE.getLogValue());
+
+			//セッションにログインユーザ情報を保持
+			session.setAttribute(KeyIdEnum.ADMIN.getKey(), ul);
+
+			log.info(Util.getMethodName() + LogEnum.END.getLogValue());
+			return JspPageEnum.MAIN_BOOKMARK_JSP.getPageName();
+		} else {
+			log.info(LogEnum.FALSE.getLogValue());
+
+			// idとパスワードがマッチングしなかった場合
+			model.addAttribute(KeyIdEnum.RESULT.getKey(), "IDまたはPASSが間違っています");
+
+			log.info(Util.getMethodName() + LogEnum.END.getLogValue());
+			return JspPageEnum.LOGIN_JSP.getPageName();
+		}
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
-	public String LogoutController(Model model) {
+	public String LogoutController(HttpSession session, Model model) {
 		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
 
+		session.removeAttribute(KeyIdEnum.ADMIN.getKey());
 
 		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
 		return JspPageEnum.LOGOUT_JSP.getPageName();

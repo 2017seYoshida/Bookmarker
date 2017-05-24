@@ -8,6 +8,10 @@
 <title>ログイン画面</title>
 </head>
 <body>
+	<c:if test="${not empty result}">
+		<p class="error">${fn:escapeXml(result)}</p>
+	</c:if>
+
 	<form action="login" method="post">
 		<fieldset>
 			<div>

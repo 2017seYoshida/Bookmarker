@@ -8,4 +8,13 @@ public class Util {
     public static String getMethodName() {
         return Thread.currentThread().getStackTrace()[2].getMethodName();
     }
+
+    /**
+     * 実行中のクラス名を取得します。
+     * @return クラス名
+     */
+    public static String getClassName() {
+        return Thread.currentThread().getStackTrace()[2].getClassName();
+    }
 }
+

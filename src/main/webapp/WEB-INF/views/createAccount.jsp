@@ -9,9 +9,23 @@
 <link href="css/commons.css" rel="stylesheet">
 </head>
 <body>
+	<c:if test="${not empty result}">
+		<p class="error">${fn:escapeXml(result)}</p>
+	</c:if>
 
+	<p>アカウント作成情報を入力してください<br></p>
 	<form action="createAccountCommit" method="post">
-		<input type="submit" value="確認">
+		<div>
+			<label>アカウントID</label><input type="text" name="id">
+		</div>
+		<div>
+			<label>Password</label><input type="password" name="pass">
+		</div>
+		<div>
+			<label>Password(再確認)</label><input type="password" name="rePass">
+		</div>
+
+		<input type="submit" value="アカウント作成">
 	</form>
 	<div>
 		<a href="login">ログイン画面に戻る</a>
