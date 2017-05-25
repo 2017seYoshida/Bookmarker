@@ -54,10 +54,10 @@ public class AuthController {
 			log.info(LogEnum.TRUE.getLogValue());
 
 			//セッションにログインユーザ情報を保持
-			session.setAttribute(KeyIdEnum.ADMIN.getKey(), ul);
+			session.setAttribute(KeyIdEnum.USER.getKey(), ul);
 
 			log.info(Util.getMethodName() + LogEnum.END.getLogValue());
-			return JspPageEnum.MAIN_BOOKMARK_JSP.getPageName();
+			return ControllerActionEnum.MAIN_BOOKMARK.getActionName();
 		} else {
 			log.info(LogEnum.FALSE.getLogValue());
 
@@ -73,7 +73,7 @@ public class AuthController {
 	public String LogoutController(HttpSession session, Model model) {
 		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
 
-		session.removeAttribute(KeyIdEnum.ADMIN.getKey());
+		session.removeAttribute(KeyIdEnum.USER.getKey());
 
 		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
 		return JspPageEnum.LOGOUT_JSP.getPageName();

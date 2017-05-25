@@ -5,7 +5,7 @@ import java.util.List;
 import jp.co.example.web.entity.Bookmarks;
 
 public interface BookmarksService {
-	List<Bookmarks> selectWhereGroupIDAndUserId(Bookmarks book);
+	List<Bookmarks> selectWhereGroupIDAndUserId(Integer groupId, Integer userId);
 
 	int insert(Bookmarks book);
 

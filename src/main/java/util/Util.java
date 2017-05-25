@@ -1,5 +1,8 @@
 package util;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Util {
 	 /**
      * 実行中のメソッド名を取得します。

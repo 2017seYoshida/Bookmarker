@@ -6,21 +6,10 @@ package enums;
  *
  */
 public enum KeyIdEnum {
-	ID("id"),
-	PASS("pass"),
 	RESULT("result"),
-	NAME("name"),
-	TEL("tel"),
-	LIST("list"),
-	USER_INFO("userInfo"),
-	ADMIN("admin"),
-	REPASS("rePass"),
-	UPDATE_BEFORE("updateBefore"),
-	UPDATE_AFTER("updateAfter"),
-	NEW_NAME("newName"),
-	NEW_TEL("newTel"),
-	NEW_PASS("newPass"),
-	LOGIN("login"),
+	USER("user"),
+	LIST_GROUP_IN_BOOKMARKS("listGroupInBookmarks"),
+	LIST_GROUP("listGroup"),
 	;
 
 	private final String key;

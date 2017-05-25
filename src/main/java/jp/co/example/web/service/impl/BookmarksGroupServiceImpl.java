@@ -1,5 +1,7 @@
 package jp.co.example.web.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +20,33 @@ public class BookmarksGroupServiceImpl implements BookmarksGroupService {
 	BookmarksGroupDao bgd;
 
 	@Override
+	public List<BookmarksGroup> selectGroupNameWhereUserId(Integer userId) {
+		// TODO 自動生成されたメソッド・スタブ
+		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
+
+		List<BookmarksGroup> list = bgd.selectWhereUserId(userId);
+
+		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
+		return list;
+	}
+
+	@Override
 	public BookmarksGroup selectWhereGroupNameAndUserId(String groupName, Integer userId) {
 		// TODO 自動生成されたメソッド・スタブ
 		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
 
 		BookmarksGroup bg = bgd.selectWhereGroupNameAndUserId(groupName, userId);
+
+		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
+		return bg;
+	}
+
+	@Override
+	public BookmarksGroup findWhereMostNewRecord() {
+		// TODO 自動生成されたメソッド・スタブ
+		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
+
+		BookmarksGroup bg = bgd.findWhereMostNewRecord();
 
 		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
 		return bg;
@@ -49,6 +73,8 @@ public class BookmarksGroupServiceImpl implements BookmarksGroupService {
 		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
 		return updateCount;
 	}
+
+
 
 
 }

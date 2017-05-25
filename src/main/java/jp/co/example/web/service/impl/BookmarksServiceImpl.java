@@ -20,11 +20,11 @@ public class BookmarksServiceImpl implements BookmarksService {
 	BookmarksDao bd;
 
 	@Override
-	public List<Bookmarks> selectWhereGroupIDAndUserId(Bookmarks book) {
+	public List<Bookmarks> selectWhereGroupIDAndUserId(Integer groupId, Integer userId) {
 		// TODO 自動生成されたメソッド・スタブ
 		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
 
-		List<Bookmarks> list = bd.selectWhereGroupIDAndUserId(book);
+		List<Bookmarks> list = bd.selectWhereGroupIDAndUserId(groupId, userId);
 
 		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
 		return list;

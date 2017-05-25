@@ -32,22 +32,22 @@ public class BookmarksDaoImpl implements BookmarksDao {
 	JdbcTemplate jt;
 
 	@Override
-	public List<Bookmarks> selectWhereGroupIDAndUserId(Bookmarks book) {
+	public List<Bookmarks> selectWhereGroupIDAndUserId(Integer groupId, Integer userId) {
 		// TODO 自動生成されたメソッド・スタブ
 		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
 
 		List<Bookmarks> list;
-		log.info(LogEnum.IF + "(book.getGroupId() == null || book.getGroupId() == 0)");
-		if(book.getGroupId() == null || book.getGroupId() == 0) {
+		log.info(LogEnum.IF + "(!(book.getGroupId() == null || book.getGroupId() == 0))");
+		if(!(groupId == null || groupId == 0)) {
 			log.info(LogEnum.TRUE.getLogValue());
 
 			list = jt.query(SQL_SELECT_WHERE_GROUPID_AND_USERID_GROUPID_IS_NOT_NULL, new BeanPropertyRowMapper<Bookmarks>(Bookmarks.class),
-					book.getGroupId(), book.getUserId());
+					groupId, userId);
 		} else {
 			log.info(LogEnum.FALSE.getLogValue());
 
 			list = jt.query(SQL_SELECT_WHERE_GROUPID_IS_NULL_AND_USERID, new BeanPropertyRowMapper<Bookmarks>(Bookmarks.class),
-					book.getUserId());
+					userId);
 		}
 
 		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
