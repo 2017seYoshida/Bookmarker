@@ -36,17 +36,6 @@ public class AuthController {
 											HttpSession session, Model model) {
 		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
 
-		log.info(LogEnum.IF.getLogValue() + "(\"\".equals(id) || \"\".equals(pass))");
-		if("".equals(id) || "".equals(pass)) {
-			log.info(LogEnum.TRUE.getLogValue());
-			model.addAttribute(KeyIdEnum.RESULT.getKey(), "未入力項目があります");
-
-			log.info(Util.getMethodName() + LogEnum.END.getLogValue());
-			return JspPageEnum.LOGIN_JSP.getPageName();
-		} else  {
-			log.info(LogEnum.FALSE.getLogValue());
-		}
-
 		UsersList ul = uls.login(id, pass);
 
 		log.info(LogEnum.IF.getLogValue() + "(ul != null)");

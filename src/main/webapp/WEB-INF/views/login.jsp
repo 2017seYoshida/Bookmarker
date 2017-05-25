@@ -5,26 +5,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="css/login.css" rel="stylesheet">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
 <title>ログイン画面</title>
 </head>
 <body>
 	<c:if test="${not empty result}">
-		<p class="error">${fn:escapeXml(result)}</p>
-	</c:if>
-
-	<form action="login" method="post">
-		<fieldset>
-			<div>
-				<label>アカウントID</label><input type="text" name="id">
+		<script type="text/javascript">
+		alert('${fn:escapeXml(result)}');
+</script>
+	</c:if><div class="container">
+		<div class="login-container">
+			<div id="output"></div>
+			<div class="avatar"></div>
+			<div class="form-box">
+				<form name="login" action="login" method="post" onSubmit="return loginCheck()">
+					<input name="id" type="text" placeholder="accountId"> <input
+						type="password" name="pass" placeholder="password">
+					<button class="btn btn-info btn-block login" type="submit">Login</button>
+				</form>
 			</div>
 			<div>
-				<label>Password</label><input type="password" name="pass">
+				<a href="createAccount">アカウント作成</a>
 			</div>
-		</fieldset>
-		<input type="submit" value="ログイン">
-	</form>
-	<div>
-		<a href="createAccount">アカウント作成</a>
+		</div>
 	</div>
+
+	<script src="/JavaScript/login.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
