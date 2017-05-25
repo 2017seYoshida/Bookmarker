@@ -21,6 +21,8 @@ public class BookmarksDaoImpl implements BookmarksDao {
 			"SELECT * FROM bookmarks WHERE group_id = ? AND user_id = ? AND group_id IS NOT NULL";
 	private static final String SQL_SELECT_WHERE_GROUPID_IS_NULL_AND_USERID =
 			"SELECT * FROM bookmarks WHERE user_id = ? AND group_id IS NULL";
+	private static final String SQL_SELECT_WHERE_BOOKMARKID =
+			"SELECT * FROM bookmarks WHERE bookmark_id = ?";
 	private static final String SQL_INSERT_BOOKMARKNAME_BOOKMARKURL_GROUPID_USERID =
 			"INSERT INTO bookmarks (bookmark_name, bookmark_url, group_id, user_id) VALUES (?, ?, ?, ?)";
 	private static final String SQL_UPDATE_WHERE_BOOKMARKID =
@@ -55,6 +57,19 @@ public class BookmarksDaoImpl implements BookmarksDao {
 	}
 
 	@Override
+	public Bookmarks selectWhereBookmarkId(Integer bookmarkId) {
+		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
+
+		List<Bookmarks> list = jt.query(SQL_SELECT_WHERE_BOOKMARKID, new BeanPropertyRowMapper<Bookmarks>(Bookmarks.class),
+				bookmarkId);
+
+		Bookmarks book = list.isEmpty() ? null : list.get(0);
+
+		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
+		return book;
+	}
+
+	@Override
 	public int insert(Bookmarks book) {
 		// TODO 自動生成されたメソッド・スタブ
 		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
@@ -73,7 +88,7 @@ public class BookmarksDaoImpl implements BookmarksDao {
 		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
 
 		int updateCount = jt.update(SQL_UPDATE_WHERE_BOOKMARKID, book.getBookmarkName(),
-				book.getBookmarkUrl(), book.getBookmarkId());
+				book.getBookmarkUrl(), book.getGroupId(), book.getBookmarkId());
 		log.debug(LogEnum.UPDATE_COUNT.getLogValue() + updateCount);
 
 		log.info(Util.getMethodName() + LogEnum.END.getLogValue());

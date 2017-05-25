@@ -21,10 +21,12 @@ public class BookmarksGroupDaoImpl implements BookmarksGroupDao {
 			"SELECT * FROM bookmarks_group WHERE group_name = ? AND user_id = ?";
 	private static final String SQL_SELECT_WHERE_USERID =
 			"SELECT * FROM bookmarks_group WHERE user_id = ?";
+	private static final String SQL_SELECT_WHERE_GROUPID =
+			"SELECT * FROM bookmarks_group WHERE group_id = ?";
 	private static final String SQL_INSERT_GROUPNAME_USERID =
 			"INSERT INTO bookmarks_group (group_name, user_id) VALUES (?, ?)";
-	private static final String SQL_DELETE_WHERE_GROUPNAME_AND_USERID =
-			"DELETE FROM bookmarks_group WHERE group_name = ? AND user_id = ?";
+	private static final String SQL_DELETE_WHERE_GROUPID =
+			"DELETE FROM bookmarks_group WHERE group_id = ?";
 	private static final String SQL_SELECT_MOST_NEW_RECORD =
 			"SELECT * FROM bookmarks_group WHERE group_id  = (SELECT MAX(group_id) FROM bookmarks_group)";
 
@@ -60,6 +62,22 @@ public class BookmarksGroupDaoImpl implements BookmarksGroupDao {
 	}
 
 	@Override
+	public BookmarksGroup selectWhereGroupId(Integer groupId) {
+		// TODO 自動生成されたメソッド・スタブ
+		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
+
+		List<BookmarksGroup> list = jt.query(SQL_SELECT_WHERE_GROUPID,
+				new BeanPropertyRowMapper<BookmarksGroup>(BookmarksGroup.class),
+				groupId);
+
+
+		BookmarksGroup bg = list.isEmpty() ? null : list.get(0);
+
+		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
+		return bg;
+	}
+
+	@Override
 	public BookmarksGroup findWhereMostNewRecord() {
 		// TODO 自動生成されたメソッド・スタブ
 		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
@@ -84,12 +102,11 @@ public class BookmarksGroupDaoImpl implements BookmarksGroupDao {
 	}
 
 	@Override
-	public int delete(String groupName, Integer userId) {
+	public int delete(Integer groupId) {
 		// TODO 自動生成されたメソッド・スタブ
 		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
 
-		int updateCount = jt.update(SQL_DELETE_WHERE_GROUPNAME_AND_USERID,
-				groupName, userId);
+		int updateCount = jt.update(SQL_DELETE_WHERE_GROUPID, groupId);
 		log.debug(LogEnum.UPDATE_COUNT.getLogValue() + updateCount);
 
 		log.info(Util.getMethodName() + LogEnum.END.getLogValue());

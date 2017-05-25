@@ -1,0 +1,14 @@
+#comboField {
+ position: relative;
+}
+#tField2 {
+ font-size: 14px;
+ width: 100px;
+ position: absolute;
+ left: 0px;
+ top: 0px;
+}
+#selBox2 {
+ font-size: 14px;
+ width: 120px;
+}

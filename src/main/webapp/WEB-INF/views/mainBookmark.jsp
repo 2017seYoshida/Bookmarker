@@ -9,12 +9,15 @@
 <title>メイン画面</title>
 </head>
 <body>
+<c:if test="${not empty result}">
+		<p class="error">${fn:escapeXml(result)}</p>
+	</c:if>
 
 	<p>アカウントID：${fn:escapeXml(sessionScope.user.accountId) }</p>
 
 	<div>
 		<p>ブックマーク追加項目</p>
-		<form action="insertBookmark" method="post">
+		<form name="inputForm" action="insertBookmark" method="post"  onSubmit="return requiredCheck()">
 			<div>
 				<label>表示名</label><input type="text" name="bookmarkName">
 			</div>
@@ -28,6 +31,7 @@
 					<c:forEach var="listGroup" items="${listGroup}">
 						<option value="${fn:escapeXml(listGroup.groupName) }"></option>
 					</c:forEach>
+					<option value="グループなし"></option>
 				</datalist>
 			</div>
 			<input type="submit" value="ブックマーク追加">
@@ -86,5 +90,7 @@
 	<form action="logout" method="post">
 		<input type="submit" value="ログアウト">
 	</form>
+
+	<script src="/JavaScript/myJavaScript.js"></script>
 </body>
 </html>

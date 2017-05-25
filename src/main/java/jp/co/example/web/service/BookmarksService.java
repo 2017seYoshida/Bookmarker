@@ -7,6 +7,8 @@ import jp.co.example.web.entity.Bookmarks;
 public interface BookmarksService {
 	List<Bookmarks> selectWhereGroupIDAndUserId(Integer groupId, Integer userId);
 
+	Bookmarks selectWhereBookmarkId(Integer bookmarkId);
+
 	int insert(Bookmarks book);
 
 	int update(Bookmarks book);

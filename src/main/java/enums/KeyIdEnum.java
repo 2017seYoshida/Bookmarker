@@ -10,6 +10,9 @@ public enum KeyIdEnum {
 	USER("user"),
 	LIST_GROUP_IN_BOOKMARKS("listGroupInBookmarks"),
 	LIST_GROUP("listGroup"),
+	BOOKMARK_ID("bookmarkId"),
+	BOOKMARKS("bookmarks"),
+	GROUP_NAME("groupName"),
 	;
 
 	private final String key;

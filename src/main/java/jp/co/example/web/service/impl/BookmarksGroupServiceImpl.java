@@ -42,6 +42,17 @@ public class BookmarksGroupServiceImpl implements BookmarksGroupService {
 	}
 
 	@Override
+	public BookmarksGroup selectWhereGroupId(Integer groupId) {
+		// TODO 自動生成されたメソッド・スタブ
+		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
+
+		BookmarksGroup bg = bgd.selectWhereGroupId(groupId);
+
+		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
+		return bg;
+	}
+
+	@Override
 	public BookmarksGroup findWhereMostNewRecord() {
 		// TODO 自動生成されたメソッド・スタブ
 		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
@@ -64,17 +75,13 @@ public class BookmarksGroupServiceImpl implements BookmarksGroupService {
 	}
 
 	@Override
-	public int delete(String groupName, Integer userId) {
+	public int delete(Integer groupId) {
 		// TODO 自動生成されたメソッド・スタブ
 		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
 
-		int updateCount = bgd.delete(groupName, userId);
+		int updateCount = bgd.delete(groupId);
 
 		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
 		return updateCount;
 	}
-
-
-
-
 }

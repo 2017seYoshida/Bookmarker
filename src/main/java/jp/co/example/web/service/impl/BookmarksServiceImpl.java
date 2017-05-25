@@ -31,6 +31,17 @@ public class BookmarksServiceImpl implements BookmarksService {
 	}
 
 	@Override
+	public Bookmarks selectWhereBookmarkId(Integer bookmarkId) {
+		// TODO 自動生成されたメソッド・スタブ
+		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
+
+		Bookmarks book = bd.selectWhereBookmarkId(bookmarkId);
+
+		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
+		return book;
+	}
+
+	@Override
 	public int insert(Bookmarks book) {
 		// TODO 自動生成されたメソッド・スタブ
 		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
