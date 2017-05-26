@@ -72,21 +72,21 @@ public class AccountController {
 		return JspPageEnum.CREATE_ACCOUNT_JSP.getPageName();
 	}
 
-	@RequestMapping("/updateAccount")
-	public String UpdateAccountController(Model model) {
-		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
-
-
-		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
-		return JspPageEnum.UPDATE_ACCOUNT_JSP.getPageName();
-	}
-
-	@RequestMapping(value = "/updateAccountCommit", method = RequestMethod.POST)
-	public String UpdateAccountCommitController(Model model) {
-		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
-
-
-		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
-		return JspPageEnum.MAIN_BOOKMARK_JSP.getPageName();
-	}
+//	@RequestMapping("/updateAccount")
+//	public String UpdateAccountController(Model model) {
+//		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
+//
+//
+//		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
+//		return JspPageEnum.UPDATE_ACCOUNT_JSP.getPageName();
+//	}
+//
+//	@RequestMapping(value = "/updateAccountCommit", method = RequestMethod.POST)
+//	public String UpdateAccountCommitController(Model model) {
+//		log.info(Util.getMethodName() + LogEnum.START.getLogValue());
+//
+//
+//		log.info(Util.getMethodName() + LogEnum.END.getLogValue());
+//		return JspPageEnum.MAIN_BOOKMARK_JSP.getPageName();
+//	}
 }

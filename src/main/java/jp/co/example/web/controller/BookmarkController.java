@@ -56,6 +56,7 @@ public class BookmarkController {
 			bs.insert(new Bookmarks(bookmarkName, bookmarkUrl, null, loginUser.getUserId()));
 
 			log.info(Util.getMethodName() + LogEnum.END.getLogValue());
+			return ControllerActionEnum.MAIN_BOOKMARK.getActionName();
 
 		} else {
 			log.info(LogEnum.FALSE.getLogValue());
